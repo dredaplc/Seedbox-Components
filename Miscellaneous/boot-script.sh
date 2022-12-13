@@ -7,11 +7,7 @@ function boot_script {
 ## Network
 #NIC Config
 interface=$(/sbin/ip -o -4 route show to default | awk '{print $5}')
-/sbin/ethtool -G $interface rx 1024
-sleep 1
-/sbin/ethtool -G $interface tx 2048
-sleep 1
-/sbin/ethtool -K $interface tso off gso off
+/sbin/ethtool -K $interface tso on gso off
 sleep 1
 #Other 1
 /sbin/ifconfig $interface txqueuelen 10000
